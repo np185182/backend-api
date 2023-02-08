@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model NoloOrdersVolume {
+  ServerName     String    @db.VarChar(125)
+  DatabaseName   String    @db.VarChar(125)
+  OrderDateMonth DateTime? @db.DateTime
+  Frequency      Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model OrderTable {
+  Region           String    @db.NVarChar(10)
+  CustomerName     String    @db.VarChar(500)
+  OrderDate        DateTime? @db.DateTime
+  AttemptedOrders  Int?
+  CompletedOrders  Int?
+  TotalOrders      Int?
+  data_import_date DateTime  @map("_data_import_date") @db.DateTime
+  ServerName       String?   @map("_ServerName") @db.VarChar(125)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model OrderTableMonthly {
+  ServerName     String    @db.VarChar(125)
+  DatabaseName   String    @db.VarChar(125)
+  OrderDateMonth DateTime? @db.DateTime
+  Frequency      Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model OrderTableReportMaster {
+  Region           String   @db.NVarChar(10)
+  CustomerName     String   @db.VarChar(500)
+  OrderDate        DateTime @db.DateTime
+  AttemptedOrders  Int?
+  CompletedOrders  Int?
+  TotalOrders      Int?
+  data_import_date DateTime @map("_data_import_date") @db.DateTime
+  ServerName       String?  @map("_ServerName") @db.VarChar(125)
+
+  @@ignore
+}
+
+model sysdiagrams {
+  name         String @db.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B6148A68344") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
