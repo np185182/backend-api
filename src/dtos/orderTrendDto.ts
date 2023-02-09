@@ -2,7 +2,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class OrderData {
-    @Field(() => Date)
+    @Field()
     OrderDate : Date;
 
     @Field()
