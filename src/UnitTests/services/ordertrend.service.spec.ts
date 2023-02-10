@@ -2,30 +2,55 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DashboardRepo } from '../../repositories/dashboard.repo';
 import { OrderTrendService } from '../../services/ordertrend.service';
 import { PrismaService } from '../../services/prisma.service';
-import { NewUser } from 'src/dtos/orderTrendDto';
+import { NewUser, NewUserfromdb } from 'src/dtos/orderTrendDto';
 import { OrderTrendController } from 'src/controllers/ordertrend.controller';
 
 describe('OrdertrendService', () => {
   let service: OrderTrendService;
-  
-const output:NewUser[]=[];
+  let repo:DashboardRepo;
+  const outputfromdb:NewUserfromdb[]=[{
+    "CompanyCreatedTimeStamp": "1/3/2022",
+    "CompanyName": 
+        "Two Chefs Italian Restaurant & Bar"
+    ,
+    "frequency": 1
+}];
+  const output:NewUser[]=[{
+    companyCreatedTimeStamp: "1/3/2022",
+    namesOfCompanies: [
+        "Two Chefs Italian Restaurant & Bar"
+    ],
+    frequency: 1
+}];
+  let mockrepo={
+newuserdatafromdb:jest.fn().mockReturnValue(outputfromdb)
+  }
+
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       
       providers: [OrderTrendService,
       DashboardRepo,PrismaService],
       
-    }).compile();
+    }).overrideProvider(DashboardRepo).useValue(mockrepo).compile();
 
     service = module.get<OrderTrendService>(OrderTrendService);
+    repo=module.get<DashboardRepo>(DashboardRepo)
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  it("check for NewUserData service method",()=>{
-service.NewUsersdata=jest.fn().mockReturnValue(output)
-expect(service.NewUsersdata(new Date('2022-01-01'),new Date('2022-01-03'))).toBe(output)
+  it("check for NewUserData service method",async ()=>{
+
+
+const o=await service.NewUsersdata(new Date('2022-01-01'),new Date('2022-01-03'))
+console.log(o);
+console.log(output)
+
+
+expect(o).toMatchObject(output)
 
   })
   
