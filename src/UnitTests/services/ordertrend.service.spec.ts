@@ -45,12 +45,11 @@ newuserdatafromdb:jest.fn().mockReturnValue(outputfromdb)
   it("check for NewUserData service method",async ()=>{
 
 
-const o=await service.NewUsersdata(new Date('2022-01-01'),new Date('2022-01-03'))
-console.log(o);
-console.log(output)
+const mockoutput=await service.NewUsersdata(new Date('2022-01-01'),new Date('2022-01-03'))
 
 
-expect(o).toMatchObject(output)
+
+expect(mockoutput).toMatchObject(output)
 
   })
   

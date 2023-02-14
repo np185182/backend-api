@@ -16,6 +16,9 @@ describe('OrderTrendsController',()=>{
         "CompanyName": 
             "0"},];
     resolve(kinter)})
+    const Mockprismaservice={
+
+    }
         
       
     beforeEach(async () => {
@@ -23,7 +26,7 @@ describe('OrderTrendsController',()=>{
         const app: TestingModule = await Test.createTestingModule({
           controllers: [OrderTrendController],
           providers: [OrderTrendService,DashboardRepo,PrismaService],
-          }).compile();
+          }).overrideProvider(PrismaService).useValue(Mockprismaservice).compile();
           
           
           repo=app.get<DashboardRepo>(DashboardRepo);
@@ -36,7 +39,7 @@ describe('OrderTrendsController',()=>{
             const mocktodate=new Date("2022-01-02");
             repo.newuserdatafromdb=jest.fn().mockReturnValue(intermediateoutput)
             const repooutput=repo.newuserdatafromdb(mockfromdate,mocktodate)
-            expect(repooutput).toBe(intermediateoutput)
+            expect(repooutput).toMatchObject(intermediateoutput)
           
            
         })

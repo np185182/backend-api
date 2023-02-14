@@ -1,6 +1,6 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver,Query, Args, Int } from '@nestjs/graphql';
 import { OrderTrendService } from '../services/ordertrend.service';
-import { NewUser, OrderData } from '../dtos/orderTrendDto';
+import { CompanyData, NewUser, OrderData } from '../dtos/orderTrendDto';
 
 @Resolver('Ordertrend')
 export class OrdertrendResolver {
@@ -14,4 +14,6 @@ export class OrdertrendResolver {
   getUsersData(@Args('from',{type:()=>Date})from:Date,@Args('to',{type:()=>Date})to:Date){
     return this.ordertrendService.NewUsersdata(from,to);
   }
+  
+
 }

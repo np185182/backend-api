@@ -6,8 +6,9 @@ import { PrismaService } from "../../services/prisma.service";
 import {  NewUser } from "../../dtos/orderTrendDto";
 
 describe('OrderTrendsController',()=>{
-    let Controller:OrderTrendController
-   const finaloutput:Promise<NewUser[]>=new Promise((resolve,reject)=>{
+    let Controller:OrderTrendController;
+    let service:OrderTrendService;
+    const finaloutput:Promise<NewUser[]>=new Promise((resolve,reject)=>{
         const kfinal:NewUser[]=[{
           "companyCreatedTimeStamp": "2022-01-03",
           "namesOfCompanies": [
@@ -17,6 +18,10 @@ describe('OrderTrendsController',()=>{
       },];
       resolve(kfinal)
       })
+    let mockservice={
+        NewUsersdata:jest.fn().mockReturnValue(finaloutput) 
+    }
+   
       
       
     beforeEach(async () => {
@@ -24,9 +29,10 @@ describe('OrderTrendsController',()=>{
         const app: TestingModule = await Test.createTestingModule({
           controllers: [OrderTrendController],
           providers: [OrderTrendService,DashboardRepo,PrismaService],
-          }).compile();
+          }).overrideProvider(OrderTrendService).useValue(mockservice).compile();
           
           Controller = app.get<OrderTrendController>(OrderTrendController);
+          service=app.get<OrderTrendService>(OrderTrendService)
          
         });
         it("OrderTrendsController",()=>{
@@ -35,8 +41,9 @@ describe('OrderTrendsController',()=>{
         it("GetNewUsermethod checking",()=>{
             const mockfromdate=new Date("2022-01-01");
             const mocktodate=new Date("2022-01-02");
-            jest.spyOn(Controller,'GetNewUsers').mockReturnValue(finaloutput)
-            expect(Controller.GetNewUsers(mockfromdate,mocktodate)).toBe(finaloutput);
+            
+            
+            expect(Controller.GetNewUsers(mockfromdate,mocktodate)).toMatchObject(finaloutput);
            
            
         })

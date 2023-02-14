@@ -33,3 +33,14 @@ export class NewUserfromdb{
     CompanyName: string; 
 }
 
+@ObjectType()
+export class CompanyData{
+    @Field()
+    frequency: number;
+    @Field()
+    CompanyName: string;
+    @Field()
+    Date: Date; 
+}
+
+
