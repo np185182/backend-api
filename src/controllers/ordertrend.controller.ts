@@ -15,10 +15,10 @@ export class OrderTrendController {
   async getSpecificDaysOrdersData(@Param() params) {
     return this.orderTrendService.getLastXDays(params.days);
   }
+
   @Get()
-async GetNewUsers(@Query('from')from:Date,@Query('to')to:Date):Promise<NewUser[]>{
-  
-  return await this.orderTrendService.NewUsersdata(from,to);
-}
+  async GetNewUsers(@Query('from')from:Date,@Query('to')to:Date):Promise<NewUser[]>{
+    return this.orderTrendService.NewUsersdata(from,to);
+  }
 
 }

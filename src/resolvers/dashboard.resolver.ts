@@ -14,6 +14,4 @@ export class OrdertrendResolver {
   getUsersData(@Args('from',{type:()=>Date})from:Date,@Args('to',{type:()=>Date})to:Date){
     return this.ordertrendService.NewUsersdata(from,to);
   }
-  
-
 }
