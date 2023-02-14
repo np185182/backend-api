@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type OrderData {
+  AttemptedOrders: Float!
+  CompletedOrders: Float!
+  OrderDate: DateTime!
+  TotalOrders: Float!
+}
+
+type Query {
+  inactiveusers(days: Int!): [getInactiveUsersData!]!
+  ordertrend(days: Int!): [OrderData!]!
+}
+
+type getInactiveUsersData {
+  CompanyName: [String!]
+}

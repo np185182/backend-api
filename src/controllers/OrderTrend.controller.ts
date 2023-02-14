@@ -1,7 +1,7 @@
-
 import { Controller, Get, Param } from '@nestjs/common';
-import { OrderData } from 'src/dtos/orderTrenddto';
-import {OrderTrendService} from '../providers/orderTrend.service'
+import { OrderData } from '../dtos/orderTrendDto';
+import { OrderTrendService } from '../services/ordertrend.service';
+
 
 @Controller('OrderTrends')
 export class OrderTrendController {
@@ -14,5 +14,10 @@ export class OrderTrendController {
   @Get('/days/:days')
   async getSpecificDaysOrdersData(@Param() params) {
     return this.orderTrendService.getLastXDays(params.days);
+  }
+
+  @Get('/InactiveUsers/:days')
+  async getInactiveUsersData(@Param() params) {
+    return this.orderTrendService.InactiveUsers(params.days);
   }
 }

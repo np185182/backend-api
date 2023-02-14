@@ -8,6 +8,7 @@ datasource db {
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model NoloOrdersVolume {
   ServerName     String    @db.VarChar(125)
   DatabaseName   String    @db.VarChar(125)
@@ -17,6 +18,7 @@ model NoloOrdersVolume {
   @@ignore
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model OrderTable {
   Region           String    @db.NVarChar(10)
@@ -32,6 +34,7 @@ model OrderTable {
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model OrderTableMonthly {
   ServerName     String    @db.VarChar(125)
   DatabaseName   String    @db.VarChar(125)
@@ -42,15 +45,16 @@ model OrderTableMonthly {
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model OrderTableReportMaster {
-  Region           String   @db.NVarChar(10)
-  CustomerName     String   @db.VarChar(500)
-  OrderDate        DateTime @db.DateTime
+  Region           String    @db.NVarChar(10)
+  CustomerName     String    @db.VarChar(500)
+  OrderDate        DateTime? @db.DateTime
   AttemptedOrders  Int?
   CompletedOrders  Int?
   TotalOrders      Int?
-  data_import_date DateTime @map("_data_import_date") @db.DateTime
-  ServerName       String?  @map("_ServerName") @db.VarChar(125)
+  data_import_date DateTime  @map("_data_import_date") @db.DateTime
+  ServerName       String?   @map("_ServerName") @db.VarChar(125)
 
   @@ignore
 }
@@ -63,4 +67,13 @@ model sysdiagrams {
   definition   Bytes?
 
   @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model Companydata {
+  CompanyCode             String? @db.VarChar(50)
+  CompanyName             String? @db.VarChar(50)
+  CompanyCreatedTimestamp String? @db.VarChar(50)
+
+  @@ignore
 }
