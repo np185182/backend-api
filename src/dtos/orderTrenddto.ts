@@ -14,6 +14,7 @@ export class OrderData {
     @Field()
     TotalOrders : Number;
 }
+
 @ObjectType()
 export class getInactiveUsersData {
     @Field(type => [String], { nullable: true })
