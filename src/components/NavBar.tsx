@@ -13,12 +13,12 @@ import '../shared/css/NavBar.css';
 export default function NavBar() {
     
     return (    
-            <AppBar position="static" style={{ background: '#54B948' }}>
+            <AppBar position="static" style={{ background: '#54B948' ,marginLeft:0,marginRight:0,marginTop:0}}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Ecommerce Analytics
                     </Typography>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={1}>
                         <Button color='inherit' >{ORDER_TREND}</Button>
                         <Button color='inherit'>{COMPANY_TREND}</Button>
                         <Button color='inherit'>{NEW_USER}</Button>

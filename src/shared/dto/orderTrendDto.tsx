@@ -1,3 +1,5 @@
+import { NewUsersDTO } from "./newUsersDto"
+
 export type  OrderTrendDto = {
     __typename : String,
     OrderDate : String,
@@ -9,6 +11,7 @@ export type  OrderTrendDto = {
 export type Li = {
     ordertrend : OrderTrendDto[]
 }
+
 
 export type gType = {
     labels: string[];

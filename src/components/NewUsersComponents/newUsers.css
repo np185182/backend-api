@@ -1,0 +1,109 @@
+body,html{
+margin: 0;
+padding: 0;
+}
+.newUser_date_selection_box {
+  width: 15%;
+  float: left;
+  
+  margin-top: 300px;
+  /* display: inline-block; */
+  margin-left: 20px;
+  padding-left: 0px;
+  margin-right: 30px;
+  
+  height: 548px;
+  /* margin-bottom: 100px; */
+ 
+  /* padding: 20px; */
+  border: 3px solid rgb(183, 177, 177);
+  border-radius: 6%;
+  /* height: 525px; */
+  
+}
+.FromContainer {
+  padding-right: 50px;
+  display: flex;
+  margin-top: 10%;
+  margin-right: 0%;
+  justify-content: space-between;
+  padding: 5px;
+}
+.ToContainer {
+ 
+  display: flex;
+  margin-top: 10%;
+  margin-right: 0%;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.drawer {
+  height: 300px !important;
+}
+.datepicker {
+  align-items: center;
+  height: 20px;
+  padding: 10px;
+}
+
+/* .bothbuttons {
+ 
+ padding-right: 250px;
+ padding-top:150%;
+ 
+  display:flex;
+
+} */
+.bothbuttons {
+  /* height: 100px; */
+  padding-right: 250px;
+  margin:0;
+  padding-left: 410px;
+  /* margin-bottom: 100px; */
+ 
+  padding-top: 10px;
+   display:flex;
+ 
+ }
+.submit-btn{
+  margin-bottom: 10px;
+  align-content: center;
+  left: 0px;
+  padding-left: 0px;
+  margin-left: 0px;
+  position: absolute;
+  height: 200px;
+}
+.linechart-btn {
+  margin-left: 30%;
+padding-right: 8px;
+}
+.barchart-btn {
+  margin-left: 4%;
+
+  
+}
+.newUser_chartcomponent {
+  width: 75%;
+  height: 538px;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px;
+  /* margin-left: 350px; */
+  /* float: right; */
+  /* padding: 20px; */
+  /* padding-right: 20px; */
+  
+  justify-content: space-between;
+  
+  
+  border-radius: 15px;
+  /* height: 530px; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.FullnewUserContainer {
+ margin-top: 100px;
+ margin: 100;
+}
