@@ -44,12 +44,13 @@ import {
 import "./newUsers.css";
 import { useEffect, useState } from "react";
 import StyledDrawer from "./sideBar";
-import BarsClick from "./barchart";
+import BarsClick from "../mycomponents/barchart";
 
 import { DataFromGraphql } from "../../shared/utils/Graphql/gqlHelper";
 import { NewUsersDTO } from "../../shared/dto/newUsersDto";
 import {
  
+  Fetchnewusersdata,
   settingfromdate,
   settingtodate,
 } from "../../shared/utils/redux/reducers/newUserReducer";
@@ -78,10 +79,9 @@ ChartJS.register(
 
 
 export default function NewUsers() {
-  const xaxis: String[] = [];
-  const yaxis: Number[] = [];
+  
   const dispatch: AppDispatch = useAppDispatch();
-
+  
   const defaultdates = useAppSelector((state) => state.NewUser);
 
   const newusersdatafromstore:NewUsersDTO[] = useAppSelector(
@@ -126,6 +126,17 @@ export default function NewUsers() {
       }
     }
   }
+  const Handleclickes=(event: ChartEvent, chartelement: ActiveElement[]) => {
+    if (chartelement.length === 1) {
+      const tempdate = newusersdatafromstore.map((item)=>item.companyCreatedTimeStamp)[chartelement[0].index];
+      const x = newusersdatafromstore.find(
+        (item) => item.companyCreatedTimeStamp === tempdate
+      );
+      
+      setIsDrawerOpen(true);
+      setlistofcompanies(x?.namesOfCompanies);
+    }
+  }
   const baroptions={
     responsive: true,
     scales: {
@@ -151,17 +162,7 @@ export default function NewUsers() {
         fontSize:100,
       },
     },
-    onClick: (event: ChartEvent, chartelement: ActiveElement[]) => {
-      if (chartelement.length === 1) {
-        const tempdate = newusersdatafromstore.map((item)=>item.companyCreatedTimeStamp)[chartelement[0].index];
-        const x = newusersdatafromstore.find(
-          (item) => item.companyCreatedTimeStamp === tempdate
-        );
-        
-        setIsDrawerOpen(true);
-        setlistofcompanies(x?.namesOfCompanies);
-      }
-    }
+    onClick:Handleclickes 
   }
 const [listofcompanies, setlistofcompanies] = useState<String[] | undefined>(
     []

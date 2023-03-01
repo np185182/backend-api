@@ -11,6 +11,9 @@ type initialstatetypes = {
   fromDate: string;
   toDate: string;
   newUsersdata: NewUsersDTO[];
+  isDrawerOpen:boolean;
+  isLineOrBar:boolean;
+  tempcompanieslist:String[];
 };
 const fromdate:Date=new Date()
 fromdate.setDate((fromdate.getDate()-60))
@@ -21,6 +24,10 @@ const InitialState: initialstatetypes = {
   fromDate:fromdate.toLocaleDateString(),
   toDate: todate.toLocaleDateString(),
   newUsersdata: [],
+  isDrawerOpen:false,
+  isLineOrBar:true,
+  tempcompanieslist:[]
+  
 };
  export const Fetchnewusersdata=createAsyncThunk(
   'newusersdata/fetch',
@@ -47,11 +54,25 @@ const newUserSlice:Slice<initialstatetypes> = createSlice({
     settingtodate: (state, action:PayloadAction<string>) => {
       state.toDate = action.payload;
     },
+    toggleDrawer:(state,action:PayloadAction<boolean>)=>{
+      state.isDrawerOpen=action.payload
+    },
+    toggleLineOrBar:(state,action:PayloadAction<boolean>)=>{
+      state.isLineOrBar=action.payload
+    },
+    updateCompaniesList:(state,action:PayloadAction<String[]>)=>{
+      state.tempcompanieslist=action.payload
+    }
     
   },
- 
+  extraReducers:(builder)=>{
+    builder.addCase(Fetchnewusersdata.fulfilled,(state,action:PayloadAction<NewUsersDTO[]>)=>{
+      
+      state.newUsersdata=action.payload
+    })
+  }
   }
 );
 export default newUserSlice.reducer;
-export const { settingfromdate, settingtodate } =
+export const { settingfromdate, settingtodate,toggleDrawer,toggleLineOrBar,updateCompaniesList} =
   newUserSlice.actions;

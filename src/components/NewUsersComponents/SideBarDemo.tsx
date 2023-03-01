@@ -61,14 +61,29 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
 
 
 
+
 export default function PersistentDrawerRight() {
   const theme = useTheme();
 
-  const [open, setOpen] = useState(false);
+  const [IsDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const newusersdatafromstore:NewUsersDTO[] = useAppSelector(
     (state) => state.NewUser.newUsersdata
   );
+  const [listofcompanies, setlistofcompanies] = useState<String[]>(
+    []
+  );
+  const  Handleclickes=(event: ChartEvent, chartelement: ActiveElement[]) => {
+    if (chartelement.length === 1) {
+      const tempdate = newusersdatafromstore.map((item)=>item.companyCreatedTimeStamp)[chartelement[0].index];
+      const x = newusersdatafromstore.find(
+        (item) => item.companyCreatedTimeStamp === tempdate
+      );
+      
+      setIsDrawerOpen(true);
+      setlistofcompanies(x?.namesOfCompanies!);
+    }
+  }
   const Data = {
     labels: newusersdatafromstore.map((item)=>item.companyCreatedTimeStamp),
 
@@ -111,22 +126,11 @@ export default function PersistentDrawerRight() {
         fontSize:100,
       },
     },
-    onClick: (event: ChartEvent, chartelement: ActiveElement[]) => {
-        if (chartelement.length>0) {
-            setOpen(true);
-          console.log("Bar is clicked")
-            // handleDrawerOpen()
-         
-        }
-        else{
-          setOpen(false)
-        }
-       
-      }
+    onClick: Handleclickes
     
   }
    const [isLine, SetLine] = useState(true);
-  const [IsDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const fromdate:Date=new Date()
   fromdate.setDate((fromdate.getDate()-60))
   const [from, setfrom] = useState<Date>(fromdate);
@@ -159,21 +163,9 @@ export default function PersistentDrawerRight() {
         fontSize:100,
       },
     },
-    onClick: (event: ChartEvent, chartelement: ActiveElement[]) => {
-      if (chartelement.length === 1) {
-        const tempdate = newusersdatafromstore.map((item)=>item.companyCreatedTimeStamp)[chartelement[0].index];
-        const x = newusersdatafromstore.find(
-          (item) => item.companyCreatedTimeStamp === tempdate
-        );
-        setOpen(true)
-        setIsDrawerOpen(true);
-        setlistofcompanies(x?.namesOfCompanies!);
-      }
-    }
+    onClick: Handleclickes
   }
-  const [listofcompanies, setlistofcompanies] = useState<String[]>(
-    []
-  );
+ 
  
 
 
@@ -181,7 +173,7 @@ export default function PersistentDrawerRight() {
 
   return (
     <Box display={'flex'}>
-    <Main open={open} >
+    <Main open={IsDrawerOpen} >
     <header><NavBar/></header>
     <div className="FullnewUserContainer">
     
@@ -279,10 +271,10 @@ export default function PersistentDrawerRight() {
         }}
         variant="persistent"
         anchor="right"
-        open={open}
+        open={IsDrawerOpen}
       >
        
-          <IconButton onClick={()=>setOpen(false)}>
+          <IconButton onClick={()=>setIsDrawerOpen(false)}>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         
