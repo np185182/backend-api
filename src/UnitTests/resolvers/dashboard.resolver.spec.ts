@@ -1,13 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrdertrendResolver } from '../src/resolvers/dashboard.resolver';
-import { OrderTrendService } from '../src/services/ordertrend.service';
+import { PrismaService } from '../../services/prisma.service';
+import { DashboardRepo } from '../../repositories/dashboard.repo';
+import { OrdertrendResolver } from '../../resolvers/dashboard.resolver';
+import { OrderTrendService } from '../../services/ordertrend.service';
 
 describe('OrdertrendResolver', () => {
   let resolver: OrdertrendResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [OrdertrendResolver, OrderTrendService],
+      providers: [OrdertrendResolver, OrderTrendService,DashboardRepo,PrismaService],
     }).compile();
 
     resolver = module.get<OrdertrendResolver>(OrdertrendResolver);
