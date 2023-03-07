@@ -11,17 +11,18 @@ export class DashboardRepo {
     }
 
     async GetInactiveUsers(days : number) : Promise<getInactiveUsersData[]>{
-        const data =  await this.prismaService.$queryRaw `exec InactiveUsers @noOfDays= ${days}`;
-        if (!Array.isArray(data)) {
-          throw new Error('Data is not an array');
-        }
-        const convertedData = [
-          {
-              "CompanyName": data.map(company => {
-                return company.CompanyName;
-              })
-          },
-        ];
-        return convertedData;
-      } 
-}
+        return this.prismaService.$queryRaw `exec InactiveDays @noOfDays= ${days}`;
+      //   if (!Array.isArray(data)) {
+      //     throw new Error('Data is not an array');
+      //   }
+      //   const convertedData = [
+      //     {
+      //         "CompanyName": data.map(company => {
+      //           return company.CompanyName;
+      //         })
+      //     },
+      //   ];
+      //   return convertedData;
+      // } 
+    }
+  }

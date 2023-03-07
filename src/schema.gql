@@ -20,5 +20,6 @@ type Query {
 }
 
 type getInactiveUsersData {
-  CompanyName: [String!]
+  CompanyName: String
+  LatestOrderDate: DateTime
 }

@@ -17,7 +17,13 @@ export class OrderData {
 
 @ObjectType()
 export class getInactiveUsersData {
-    @Field(type => [String], { nullable: true })
-    CompanyName? : string[];
+    @Field(type=>String,{nullable:true})
+    CompanyName : String;
+
+    @Field({nullable:true})
+    LatestOrderDate : Date;
+
+    // @Field()
+    // Impact : Number;
 }
 
