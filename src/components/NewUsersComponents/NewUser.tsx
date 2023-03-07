@@ -44,7 +44,7 @@ import {
 import "./newUsers.css";
 import { useEffect, useState } from "react";
 import StyledDrawer from "./sideBar";
-import BarsClick from "../mycomponents/barchart";
+import BarsClick from "../mycomponents/NewUserChart";
 
 import { DataFromGraphql } from "../../shared/utils/Graphql/gqlHelper";
 import { NewUsersDTO } from "../../shared/dto/newUsersDto";

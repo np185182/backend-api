@@ -2,7 +2,7 @@ export type NewUsersDTO={
     __typename:String,
     companyCreatedTimeStamp:String,
     namesOfCompanies:String[],
-    frequency:Number
+    frequency:number
 
 }
 export type newusertype={

@@ -1,6 +1,7 @@
 import { ActiveElement, ChartEvent } from "chart.js";
 
 export const DAYS = 865;
+export const newUser_datepickers_Title="Select Duration";
 
 
 export const GRAPH_OPTIONS = {

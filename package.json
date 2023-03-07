@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "debug":"react-scripts debug"
+    "debug": "react-scripts debug"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +61,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^3.0.0",
     "@graphql-codegen/client-preset": "^2.0.0",
+    "@types/styled-components": "^5.1.26",
     "typescript": "^4.9.5"
   }
 }

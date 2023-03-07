@@ -16,36 +16,54 @@ export default function NewUsersideBar(){
   const listofcompanies = useAppSelector(
     (state) => state.NewUser.tempcompanieslist
   );
+  const tempbarclickedDate=useAppSelector((state)=>state.NewUser.barclickedDate);
     return(<div className="drawer_in">
       <Drawer 
-        sx={{
-          width: drawerWidth,
-          height: 'calc(100% - 64px)', top: 64,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
+      anchor="right"
+      open={IsDrawerOpen}
+      onClose={() => {
+        dispatch(toggleDrawer(false))
+       
+      }}
+      
+      
+      PaperProps={{
+        elevation: 10,
+        sx: {
+          width: 230,
+          flexShrink: 100,
+          '& .MuiDrawer-paper': {
+            width: 100,
           },
-        }}
-        variant="persistent"
-        anchor="right"
-        
-        open={IsDrawerOpen}
-        
-      >
-        <IconButton onClick={() => dispatch(toggleDrawer(false))}>
+          padding: 3,
+          marginTop: 8.2,
+          
+          height: "80%",
+          color: "black",
+          backgroundColor: "white",
+           borderRadius: 3,
+        },
+      }}  >
+        {/* <IconButton onClick={() => dispatch(toggleDrawer(false))}>
           {theme.direction === "rtl" ? (
             <ChevronLeftIcon />
           ) : (
             <ChevronRightIcon />
           )}
-        </IconButton>
+        </IconButton> */}
 
+        {/* <Divider /> */}
+        <h2 style={{fontFamily:'Palyfair'}}> Enrolled Companies</h2>
         <Divider />
+        <h3 style={{fontFamily:'Palyfair'}}>Date: {tempbarclickedDate}</h3>
+        <Divider />
+        <h3 style={{fontFamily:'Palyfair'}}>Enrollments: {listofcompanies.length}</h3>
+        <Divider/>
         <List>
-          <h2> Enrolled Companies</h2>
+          
           {listofcompanies?.map((text, index) => (
-            <ListItem style={{ padding: 0, marginTop: 0 }}>
-              <h3 style={{ paddingRight: 19 }}> </h3>
+            <ListItem >
+           
               <AddBusinessOutlinedIcon style={{ fill: "#0072ea" }} />
               <ListItemText
                 primaryTypographyProps={{

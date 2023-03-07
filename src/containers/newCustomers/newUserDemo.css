@@ -1,166 +1,239 @@
-body,html{
-    margin: 0;
-    padding: 0;
-    }
-    .newUser_date_selection_box {
-      width: 15%;
-      float: left;
-      margin-top: 300px;
-    
-      margin-left: 20px;
-      padding-left: 0px;
-      margin-right: 30px;
-      margin-top: 0;
-      height: 635px;
-      position: relative;
-      
-      border: 3px solid rgb(183, 177, 177);
-      border-radius: 6%;
-   
-      
-    }
-    .FromContainer {
-      padding-right: 50px;
-      display: flex;
-      margin-top: 10%;
-      margin-right: 0%;
-      justify-content: space-between;
-      padding: 5px;
-    }
-    .ToContainer {
-     
-      display: flex;
-      margin-top: 10%;
-      margin-right: 0%;
-      justify-content: space-between;
-      padding: 5px;
-    }
-    
-    
-    .drawer {
-      height: 300px !important;
-    }
-    .datepicker {
-      align-items: center;
-      height: 20px;
-      padding: 10px;
-    }
-    
-    .bothbuttons {
-     /* height: 100px; */
-     justify-content: center;
-     align-items: center;
-    padding-left: 180px;
-    margin-right: 100px !important;
-    padding-right: 250px;
-   margin:0;
-padding-top: 5px;
-      display:flex;
-    
-    }
-    .drawer {
-      flex-shrink: 0;
-      width: 240px;
-      background-color: #fff;
-    }
-
-    .linechart-btn {
-      margin-left: 30%;
-    padding-right: 8px;
-    }
-    .barchart-btn {
-      margin-left: 4%;
-    }
-    .newUser_chartcomponent {
-      width: 78%;
-      height: 625px;
-      display:grid;
-      margin-top: 0;
-      padding: 10px;
-    
-      justify-content: space-between;
-      
-      
-      border-radius: 15px;
-      
-      box-shadow: rgba(53, 121, 190, 0.2) 0px 8px 24px;
-    }
-    .FullnewUserContainer {
-     padding-top: 30px;
-     margin: 0;
-   
-    }
-    
-    
-    @media only screen and (max-width: 1340px)
-    {
-      
-       .newUser_date_selection_box {
-        margin-left: 400px;
-        width: 500px;
-        height: 300px;
-        /* margin-left: 150px;
-        justify-content: center;
-        align-items: center;
-        height:40%;
-        width: 50%;
-        
-        width: 15%;
-        float: left;
-        margin-top: 300px;
-      
-        margin-left: 20px;
-        padding-left: 0px;
-        margin-right: 30px;
-        margin-top: 0;
-        height: 635px;
-        position: relative;
-        
-        border: 3px solid rgb(183, 177, 177);
-        border-radius: 6%; */
-     
-        
-      }
-      .newUser_chartcomponent {
-        width: 78%;
-        height: 625px;
-        display:grid;
-        margin-left: 100px;
-        margin-top: 0;
-        padding: 10px;
-      
-        justify-content: space-between;
-        
-        
-        border-radius: 15px;
-        
-        box-shadow: rgba(53, 121, 190, 0.2) 0px 8px 24px;
-      }
-      .FromContainer {
-        padding-right: 50px;
-        display: flex;
-        margin-top: 10%;
-        margin-left: 120px;
-        margin-right: 100px;
-        justify-content: space-between;
-        padding: 5px;
-      }
-      .ToContainer {
-       
-        display: flex;
-        margin-top: 10%;
-        margin-left:120px;
-        margin-right: 100px;
-        justify-content: space-between;
-        padding: 5px;
-      }
-      .submit-btn{
-        padding-bottom: 100px;
-        margin-left: 120px;
-        margin-bottom: 100px;
-        align-items: center;
-        justify-content: center;
-      }
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+.NewUserCompletePage {
+  display: flex;
+}
+.NewUsersdateSelection_block {
+  width: "30%";
+  height: "40%";
+  display: grid;
+  grid-template-rows: 46%;
+  grid-gap: 8%;
+  margin-bottom: 10px;
+}
+.newUserDatepickers {
+  /* border: 3px solid rgb(183, 177, 177); */
+  box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+  border-radius: 15px; 
+  height: 105%;
+  margin-top: 5%;
+  width: 90%;
+  margin-left: 7%;
+}
+.FromContainer {
+  padding-right: 50px;
+  display: flex;
+  margin-top: 5%;
+  margin-right: 0%;
+  justify-content: space-between;
+  padding: 5px;
+}
+.ToContainer {
+  padding-right: 50px;
+  display: flex;
+  margin-top: 10%;
+  margin-right: 0%;
+  justify-content: space-between;
+  padding: 5px;
+}
+.submit-btn {
+  padding-left: 30%;
+  margin-top: 15%;
+}
+.newUserTable_details {
+  /* border: 3px solid rgb(183, 177, 177); */
+  box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+  border-radius: 15px;
+  height: 94%;
+  margin-top: 5%;
+  width: 90%;
+  margin-left: 7%;
+}
+.newUser_chartcomponent_withoutsidebar {
+  margin-top: 0.7% !important;
+  margin-left: 2%;
+  height: 80% !important ;
+  /* width: 75%; */
+ width:71%;
+  margin-top: 0;
+  padding: 10px;
+  justify-content: space-between;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.newUser_chartcomponent_withsidebar {
+  width: 61%;
+  /* height: 80% !important  ; */
+  height: 100% !important;
+  margin-left: 2%;
+  margin-top: 1% !important;
+  padding-top: 5% !important;
+  padding: 10px;
+  justify-content: space-between;
+  border-radius: 15px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+}
+.newUsertable_container {
+  width: 100%;
+  border-radius: 6% !important ;
+  /* height:74%; */
+  margin-top: 15%;
+}
+.newUsertable_container_title {
+  padding: 5%;
+  padding-left: 27%;
+  margin-top: 3% !important ;
+  padding-bottom: 1%;
+  /* margin-bottom: 8% !important; */
 
 }
+.newUser_datepickers_title {
+  padding: 4%;
+  padding-left: 25%;
+  padding-top: 5%;
+  font-weight: normal ;
+}
+.chartHeading_div {
+  padding-left: 24%;
+  padding-top: 1%;
+  font-size: 150%;
+  padding-bottom: 1.5%;
+}
+
+.datepicker {
+  align-items: center;
+  height: 20px;
+  padding: 10px;
+}
+
+.bothbuttons {
+  justify-content: center;
+  align-items: center;
+  padding-left: 30% ;
+  margin-right: 100px !important;
+   padding-right: 17%; 
+  margin: 0;
+  padding-top: 5px;
+  display: flex;
+}
+
+.linechart-btn {
+  margin-left: 30%;
+  padding-right: 8px;
+}
+.barchart-btn {
+  margin-left: 4%;
+}
+.submit-btn{
+  margin-top: 28%;
+}
+
+
+
+  @media only screen and (max-width:1000px){
+    .NewUserCompletePage {
+      display: grid;
+      grid-template-rows: 46%;
+  grid-gap: 0%;
+    }
+    .NewUsersdateSelection_block {
+     
+      display: flex;
+      align-items: center;
+      margin: 0 -2px;
+      
+    }
+    .newUserDatepickers {
+      border: 3px solid rgb(183, 177, 177);
+      border-radius: 15px;
+      height: 78%;
+      margin-top: 0% !important;
+      width: 80%;
+      margin-left: 7%;
+    }
+    .FromContainer {
+      padding-right: 0px !important;
+  display: flex;
+  margin-top: 5%;
+  margin-right: 0%;
+  margin-left: 10%;
+  justify-content: space-between;
+  padding: 5px;
+    }
+    .ToContainer {
+      padding-right: 5% !important;
+      display: flex;
+      margin-top: 10%;
+      margin-right: 0%;
+      margin-left: 10%;
+      justify-content: space-between;
+      padding: 5px;
+    }
+    .submit-btn {
+      padding-left: 36%;
+      margin-top: 15%;
+    }
+  .newUser_chartcomponent_withoutsidebar {
+      margin-top: 0.7% !important;
+      margin-left: 2%;
+      height: 100% !important ;
+      /* width: 75%; */
+     width:92%;
+      margin-top: 0;
+      padding: 10px;
+      justify-content: space-between;
+      border-radius: 15px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    .newUser_chartcomponent_withsidebar {
+      width: 69%;
+   
+      height: 100% !important  ;
+      margin-left: 2%;
+      margin-top: 1% !important;
+      padding-top: 5% !important;
+      padding: 10px;
+      justify-content: space-between;
+      border-radius: 15px;
+      /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+      box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+    }
+    .newUserTable_details {
+      border: 3px solid rgb(183, 177, 177);
     
+      border-radius: 15px;
+      height: 78%;
+      margin-top: 3% !important;
+      width: 86%;
+      margin-left: 0%;
+      margin-right: 5%;
+      margin-bottom: 3.5%;
+      
+    }
+    .newUsertable_container {
+      width: 100%;
+      border-radius: 5% !important ;
+      height: 62.7%;
+      /* height:74%; */
+      margin-top: 17%;
+    }
+    .newUsertable_container_title {
+      padding: 4%;
+      padding-left: 33%;
+      position: relative;
+      margin-top: 5% !important ;
+      padding-bottom: 1%;
+      /* margin-bottom: 8% !important; */
+    
+    }
+    .newUser_datepickers_title {
+      padding: 4%;
+      padding-left: 33%;
+      padding-top: 5%;
+    }
+  }
+

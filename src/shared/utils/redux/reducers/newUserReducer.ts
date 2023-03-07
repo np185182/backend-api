@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction, Slice } from "@reduxjs/to
 import { act } from "@testing-library/react";
 import axios, { AxiosResponse } from "axios";
 import dayjs, { Dayjs } from "dayjs";
+import { format } from "path";
 import { NewUsersDTO } from "../../../dto/newUsersDto";
 import { DataFromGraphql } from "../../Graphql/gqlHelper";
 import { RootState, AppDispatch } from "../store";
@@ -14,6 +15,7 @@ type initialstatetypes = {
   isDrawerOpen:boolean;
   isLineOrBar:boolean;
   tempcompanieslist:String[];
+  barclickedDate:String
 };
 const fromdate:Date=new Date()
 fromdate.setDate((fromdate.getDate()-60))
@@ -26,7 +28,8 @@ const InitialState: initialstatetypes = {
   newUsersdata: [],
   isDrawerOpen:false,
   isLineOrBar:true,
-  tempcompanieslist:[]
+  tempcompanieslist:[],
+  barclickedDate:''
   
 };
  export const Fetchnewusersdata=createAsyncThunk(
@@ -47,9 +50,9 @@ const newUserSlice:Slice<initialstatetypes> = createSlice({
   initialState: InitialState,
   reducers: {
     settingfromdate: (state, action:PayloadAction<string>) => {
-      console.log(state.fromDate+"="+action.payload)
+    
       state.fromDate = action.payload;
-      console.log(state.fromDate  )
+      
     },
     settingtodate: (state, action:PayloadAction<string>) => {
       state.toDate = action.payload;
@@ -62,6 +65,9 @@ const newUserSlice:Slice<initialstatetypes> = createSlice({
     },
     updateCompaniesList:(state,action:PayloadAction<String[]>)=>{
       state.tempcompanieslist=action.payload
+    },
+    updatebarclickedDate:(state,action:PayloadAction<String>)=>{
+      state.barclickedDate=action.payload
     }
     
   },
@@ -74,5 +80,5 @@ const newUserSlice:Slice<initialstatetypes> = createSlice({
   }
 );
 export default newUserSlice.reducer;
-export const { settingfromdate, settingtodate,toggleDrawer,toggleLineOrBar,updateCompaniesList} =
+export const { settingfromdate, settingtodate,toggleDrawer,toggleLineOrBar,updateCompaniesList,updatebarclickedDate} =
   newUserSlice.actions;

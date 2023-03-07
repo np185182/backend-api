@@ -16,7 +16,7 @@ export default function NavBar() {
             <AppBar position="static" style={{ background: '#54B948' ,marginLeft:0,marginRight:0,marginTop:0}}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Ecommerce Analytics
+                        e-Commerce Analytics
                     </Typography>
                     <Stack direction='row' spacing={1}>
                         <Button color='inherit' >{ORDER_TREND}</Button>
