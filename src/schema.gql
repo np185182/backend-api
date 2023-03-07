@@ -22,5 +22,11 @@ type OrderData {
 
 type Query {
   NewUsersData(from: DateTime!, to: DateTime!): [NewUser!]!
+  inactiveusers(days: Int!): [getInactiveUsersData!]!
   ordertrend(days: Int!): [OrderData!]!
+}
+
+type getInactiveUsersData {
+  CompanyName: String
+  LatestOrderDate: DateTime
 }

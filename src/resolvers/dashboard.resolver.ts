@@ -1,6 +1,6 @@
 import { Resolver,Query, Args, Int } from '@nestjs/graphql';
 import { OrderTrendService } from '../services/ordertrend.service';
-import { CompanyData, NewUser, OrderData } from '../dtos/orderTrendDto';
+import { CompanyData, getInactiveUsersData, NewUser, OrderData } from '../dtos/orderTrendDto';
 
 
 @Resolver('Ordertrend')
@@ -16,5 +16,10 @@ export class OrdertrendResolver {
    
 
     return this.ordertrendService.NewUsersdata(from,to);
+  }
+
+  @Query(()=> [getInactiveUsersData],{name: 'inactiveusers'})
+  GetInactiveUsers(@Args('days', { type: () => Int }) days: number){
+    return this.ordertrendService.InactiveUsers(days);
   }
 }

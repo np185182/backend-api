@@ -21,4 +21,10 @@ export class OrderTrendController {
     return this.orderTrendService.NewUsersdata(from,to);
   }
 
+  @Get('/InactiveUsers/:days')
+  async getInactiveUsersData(@Param() params) {
+    return this.orderTrendService.InactiveUsers(params.days);
+  }
+ 
+
 }

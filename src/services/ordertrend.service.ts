@@ -1,5 +1,5 @@
 import { Injectable} from '@nestjs/common';
-import { OrderData } from '../dtos/orderTrendDto';
+import { getInactiveUsersData, OrderData } from '../dtos/orderTrendDto';
 import { DashboardRepo } from '../repositories/dashboard.repo';
 import { NewUserfromdb } from '../dtos/orderTrendDto';
 import { NewUser } from '../dtos/orderTrendDto';
@@ -12,6 +12,10 @@ export class OrderTrendService {
 
   async getLastXDays(days : number) : Promise<OrderData[]> {
     return this.dashboardRepo.GetLastDays(days);
+  }
+
+  async InactiveUsers(days : number) : Promise<getInactiveUsersData[]> {
+    return this.dashboardRepo.GetInactiveUsers(days);
   }
 
   async NewUsersdata(fromdate: Date, todate: Date):Promise<NewUser[]> {

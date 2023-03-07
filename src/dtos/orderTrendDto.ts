@@ -43,4 +43,13 @@ export class CompanyData{
     Date: Date; 
 }
 
+@ObjectType()
+export class getInactiveUsersData {
+    @Field(type=>String,{nullable:true})
+    CompanyName : String;
+
+    @Field({nullable:true})
+    LatestOrderDate : Date;
+}
+
 
