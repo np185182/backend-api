@@ -1,5 +1,5 @@
-import { Controller, Get, Param,Query } from '@nestjs/common';
-import { NewUser } from '../dtos/orderTrendDto';
+import { Body, Controller, Get, Param,Query } from '@nestjs/common';
+import { NewUser, reqbody } from '../dtos/orderTrendDto';
 import { OrderTrendService } from '../services/ordertrend.service';
 
 
@@ -25,6 +25,13 @@ export class OrderTrendController {
   async getInactiveUsersData(@Param() params) {
     return this.orderTrendService.InactiveUsers(params.days);
   }
- 
+  @Get('/CompanyData/')
+  async getSpecificCompanyData(@Body() body:reqbody){
+    return this.orderTrendService.getSpecificCompanydata(body.companyString,body.dateString)
+  }
+  @Get('/companies/')
+  async getAllCompanies(){
+    return this.orderTrendService.getCompaniesList();
+  } 
 
 }
