@@ -1,28 +1,34 @@
-import { Injectable} from '@nestjs/common';
-import { getInactiveUsersData, OrderData } from '../dtos/orderTrendDto';
+import { Injectable } from '@nestjs/common';
+import {
+  companyLevel,
+  getInactiveUsersData,
+  OrderData,
+} from '../dtos/orderTrendDto';
 import { DashboardRepo } from '../repositories/dashboard.repo';
 import { NewUserfromdb } from '../dtos/orderTrendDto';
 import { NewUser } from '../dtos/orderTrendDto';
 
 @Injectable()
 export class OrderTrendService {
-  private defaultfrom='2022-10-12';
-  private defaultto='2022-1-1';
-  constructor(private readonly dashboardRepo : DashboardRepo){}
+  constructor(private readonly dashboardRepo: DashboardRepo) {}
 
-  async getLastXDays(days : number) : Promise<OrderData[]> {
+  async getLastXDays(days: number): Promise<OrderData[]> {
     return this.dashboardRepo.GetLastDays(days);
   }
 
-  async InactiveUsers(days : number) : Promise<getInactiveUsersData[]> {
-    return this.dashboardRepo.GetInactiveUsers(days);
+  async getSpecificCompanydata(
+    customerName: String,
+    dates: String,
+  ): Promise<companyLevel[]> {
+    return this.dashboardRepo.getSpecificCompanyData(customerName, dates);
+  }
+  async getCompaniesList(): Promise<string[]> {
+    return this.dashboardRepo.getCompaniesList();
   }
 
-  async NewUsersdata(fromdate: Date, todate: Date):Promise<NewUser[]> {
-
-    const from = fromdate || new Date(this.defaultfrom);
-    const to = todate || new Date(this.defaultto);
-    const datafromDb:NewUserfromdb[] = await this.dashboardRepo.newuserdatafromdb(fromdate, todate);
+  async NewUsersdata(fromdate: Date, todate: Date): Promise<NewUser[]> {
+    const datafromDb: NewUserfromdb[] =
+      await this.dashboardRepo.newuserdatafromdb(fromdate, todate);
 
     const map = new Map<string, string[]>();
 
@@ -32,9 +38,7 @@ export class OrderTrendService {
         temp.push(obj.CompanyName);
         map[obj.CompanyCreatedTimeStamp] = temp;
       } else {
-        map.set(obj.CompanyCreatedTimeStamp, [
-          obj.CompanyName,
-        ]);
+        map.set(obj.CompanyCreatedTimeStamp, [obj.CompanyName]);
       }
     });
 
@@ -47,7 +51,10 @@ export class OrderTrendService {
         frequency: val.length,
       });
     });
-    
+
     return newUserdata;
+  }
+  async InactiveUsers(days: number): Promise<getInactiveUsersData[]> {
+    return this.dashboardRepo.GetInactiveUsers(days);
   }
 }
