@@ -3,6 +3,9 @@ import { companyLevel, getInactiveUsersData, OrderData } from 'src/dtos/orderTre
 import { PrismaService } from '../services/prisma.service';
 import { NewUserfromdb } from 'src/dtos/orderTrendDto';
 
+
+
+
 @Injectable()
 export class DashboardRepo {
     constructor(private readonly prismaService : PrismaService){}
@@ -11,10 +14,13 @@ export class DashboardRepo {
         return this.prismaService.$queryRaw `exec GetLastDays @noOfDays= ${days}`
     }
     async newuserdatafromdb(from:Date,to:Date):Promise<NewUserfromdb[]>{
-        return this.prismaService.$queryRaw<NewUserfromdb[]>`exec GetNewRegistrations ${from},${to}`
+        const dummycompaniesPatterns=process.env.DummyCompaniesPatterns as String;
+        
+     
+        return this.prismaService.$queryRaw<NewUserfromdb[]>`exec GetNewRegistrations1 ${from},${to}`
     }
-    async GetInactiveUsers(days : number) : Promise<getInactiveUsersData[]>{
-        return this.prismaService.$queryRaw `exec InactiveDays @noOfDays= ${days}`;
+    async GetInactiveUsers(date : Date) : Promise<getInactiveUsersData[]>{
+        return this.prismaService.$queryRaw `exec InactiveCompanies @noOfDays= ${date}`;
     }
     async getCompaniesList(){
         return this.prismaService.$queryRaw<string[]>`exec companies`;
@@ -24,3 +30,5 @@ export class DashboardRepo {
     }
 
 }
+
+
