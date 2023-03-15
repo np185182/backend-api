@@ -54,7 +54,7 @@ export class OrderTrendService {
 
     return newUserdata;
   }
-  async InactiveUsers(days: number): Promise<getInactiveUsersData[]> {
-    return this.dashboardRepo.GetInactiveUsers(days);
+  async InactiveCompanies(date: Date): Promise<getInactiveUsersData[]> {
+    return this.dashboardRepo.InactiveCompanies(date);
   }
 }
