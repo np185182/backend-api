@@ -16,22 +16,22 @@ export class OrderTrendController {
     return this.orderTrendService.getLastXDays(params.days);
   }
 
-  @Get()
-  async GetNewUsers(@Query('from')from:Date,@Query('to')to:Date):Promise<NewUser[]>{
-    return this.orderTrendService.NewUsersdata(from,to);
-  }
+  // @Get()
+  // async GetNewUsers(@Query('from')from:Date,@Query('to')to:Date):Promise<NewUser[]>{
+  //   return this.orderTrendService.NewUsersdata(from,to);
+  // }
 
-  @Get('/InactiveUsers/:days')
+  @Get('/InactiveUsers/:date')
   async getInactiveUsersData(@Param() params) {
-    return this.orderTrendService.InactiveUsers(params.days);
+    return this.orderTrendService.InactiveUsers(params.date);
   }
-  @Get('/CompanyData/')
-  async getSpecificCompanyData(@Body() body:reqbody){
-    return this.orderTrendService.getSpecificCompanydata(body.companyString,body.dateString)
-  }
-  @Get('/companies/')
-  async getAllCompanies(){
-    return this.orderTrendService.getCompaniesList();
-  } 
+  // @Get('/CompanyData/')
+  // async getSpecificCompanyData(@Body() body:reqbody){
+  //   return this.orderTrendService.getSpecificCompanydata(body.companyString,body.dateString)
+  // }
+  // @Get('/companies/')
+  // async getAllCompanies(){
+  //   return this.orderTrendService.getCompaniesList();
+  // } 
 
 }
