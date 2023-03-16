@@ -19,8 +19,8 @@ export class OrdertrendResolver {
   }
 
   @Query(()=> [getInactiveUsersData],{name: 'inactiveusers'})
-  GetInactiveUsers(@Args('days', { type: () => Date }) date: Date){
-    return this.ordertrendService.InactiveUsers(date);
+  GetInactiveUsers(@Args('days', { type: () => Date }) days: Date){
+    return this.ordertrendService.InactiveUsers(days);
   }
 
   @Query(() => [companyLevel], { name: 'getSpecificCompanyData' }) getData(

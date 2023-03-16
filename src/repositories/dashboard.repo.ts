@@ -20,7 +20,7 @@ export class DashboardRepo {
         return this.prismaService.$queryRaw<NewUserfromdb[]>`exec GetNewRegistrations1 ${from},${to}`
     }
     async GetInactiveUsers(date : Date) : Promise<getInactiveUsersData[]>{
-        return this.prismaService.$queryRaw `exec InactiveCompanies @noOfDays= ${date}`;
+        return this.prismaService.$queryRaw `exec InactiveCompanies  ${date}`;
     }
     async getCompaniesList(){
         return this.prismaService.$queryRaw<string[]>`exec companies`;
