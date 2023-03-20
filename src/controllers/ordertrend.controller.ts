@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param,Query } from '@nestjs/common';
-import { NewUser, reqbody } from '../dtos/orderTrendDto';
+import { NewUser, OrderData, reqbody } from '../dtos/orderTrendDto';
 import { OrderTrendService } from '../services/ordertrend.service';
 
 
@@ -12,8 +12,9 @@ export class OrderTrendController {
    * @returns Json Array of OrderData DTO
    */
   @Get('/days/:days')
-  async getSpecificDaysOrdersData(@Param() params) {
-    return this.orderTrendService.getLastXDays(params.days);
+  async getSpecificDaysOrdersData(@Param() params) : Promise<OrderData[]> {
+    const data = await this.orderTrendService.getLastXDays(params.days)
+    return data;
   }
 
   @Get()

@@ -16,7 +16,7 @@ type NewUser {
 type OrderData {
   AttemptedOrders: Float!
   CompletedOrders: Float!
-  OrderDate: DateTime!
+  OrderDate: String!
   TotalOrders: Float!
 }
 
