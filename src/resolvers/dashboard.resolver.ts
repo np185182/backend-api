@@ -19,7 +19,7 @@ export class OrdertrendResolver {
   }
 
   @Query(()=> [getInactiveUsersData],{name: 'inactiveusers'})
-  GetInactiveUsers(@Args('days', { type: () => Int }) days: number){
+  GetInactiveUsers(@Args('days', { type: () => Date }) days: Date){
     return this.ordertrendService.InactiveUsers(days);
   }
 
