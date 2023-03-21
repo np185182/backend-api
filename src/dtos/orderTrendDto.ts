@@ -3,7 +3,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 @ObjectType()
 export class OrderData {
     @Field()
-    OrderDate : String;
+    OrderDate : Date;
 
     @Field()
     AttemptedOrders : Number;
