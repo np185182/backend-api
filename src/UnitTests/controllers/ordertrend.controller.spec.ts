@@ -45,7 +45,7 @@ describe('OrderTrendsController', () => {
     it("OrderTrendsController", () => {
         expect(Controller).toBeDefined();
     })
-    it("GetNewUsermethod checking", () => {
+    it("Should return the newUsers Data From Service", () => {
         const mockfromdate = new Date("2022-01-01");
         const mocktodate = new Date("2022-01-02");
         expect(Controller.GetNewUsers(mockfromdate, mocktodate)).toMatchObject(finaloutput);

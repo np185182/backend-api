@@ -14,9 +14,6 @@ export class DashboardRepo {
         return this.prismaService.$queryRaw `exec GetLastDays @noOfDays= ${days}`
     }
     async newuserdatafromdb(from:Date,to:Date):Promise<NewUserfromdb[]>{
-        const dummycompaniesPatterns=process.env.DummyCompaniesPatterns as String;
-        
-     
         return this.prismaService.$queryRaw<NewUserfromdb[]>`exec GetNewRegistrations1 ${from},${to}`
     }
     async GetInactiveUsers(date : Date) : Promise<getInactiveUsersData[]>{

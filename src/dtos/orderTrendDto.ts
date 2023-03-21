@@ -61,6 +61,10 @@ export class companyLevel {
   Date: String;
   @Field()
   TotalOrders: number;
+  @Field()
+  AttemptedOrders: number;
+  @Field()
+  CompletedOrders: number;
 }
 
 export type reqbody ={

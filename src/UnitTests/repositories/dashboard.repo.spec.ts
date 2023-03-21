@@ -45,6 +45,7 @@ describe('OrderTrendsController',()=>{
             repo.newuserdatafromdb=jest.fn().mockReturnValue(intermediateoutput)
             const repooutput=repo.newuserdatafromdb(mockfromdate,mocktodate)
             expect(repooutput).toMatchObject(intermediateoutput)
+            
         })
         it("GetLastDays checking from repository",()=>{
           const mockDays = 200;

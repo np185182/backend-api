@@ -83,7 +83,7 @@ describe('OrdertrendService', () => {
   });
   it("check for NewUserData service method", async () => {
     const mockoutput = await service.NewUsersdata(new Date('2022-01-01'), new Date('2022-01-03'))
-    expect(mockoutput).toMatchObject(output)
+    expect(mockoutput).toMatchObject(output);
   })
   describe('getLastXDays',()=>{
     const inputDays = 200;

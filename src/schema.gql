@@ -33,7 +33,9 @@ type companiesList {
 }
 
 type companyLevel {
+  AttemptedOrders: Float!
   Company: String!
+  CompletedOrders: Float!
   Date: String!
   TotalOrders: Float!
 }
