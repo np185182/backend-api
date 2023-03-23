@@ -18,10 +18,10 @@ export class OrderTrendService {
   }
 
   async getSpecificCompanydata(
-    customerName: String,
-    dates: String,
+    CompanyString: String,
+    dateString: String,
   ): Promise<companyLevel[]> {
-    return this.dashboardRepo.getSpecificCompanyData(customerName, dates);
+    return this.dashboardRepo.getSpecificCompanyData(CompanyString, dateString);
   }
   async getCompaniesList(): Promise<string[]> {
     return this.dashboardRepo.getCompaniesList();

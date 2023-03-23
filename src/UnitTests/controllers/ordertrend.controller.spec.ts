@@ -3,7 +3,7 @@ import { OrderTrendController } from '../../controllers/ordertrend.controller'
 import { DashboardRepo } from "../../repositories/dashboard.repo";
 import { OrderTrendService } from "../../services/ordertrend.service";
 import { PrismaService } from "../../services/prisma.service";
-import { NewUser, OrderData } from "../../dtos/orderTrendDto";
+import { companyLevel, NewUser, OrderData } from "../../dtos/orderTrendDto";
 
 describe('OrderTrendsController', () => {
     let Controller: OrderTrendController;
@@ -19,7 +19,75 @@ describe('OrderTrendsController', () => {
         resolve(kfinal)
     })
     
+    const expectedOut : Promise<companyLevel[]> = new Promise((resolve,reject)=>{
 
+      const dummy : companyLevel[]=[
+        {
+          "TotalOrders": 0,
+          "Date": "05-04-2020",
+          "Company": "AO CAFE",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        },
+        {
+          "TotalOrders": 0,
+          "Date": "05-05-2020",
+          "Company": "AO CAFE",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        },
+        {
+          "TotalOrders": 0,
+          "Date": "2021-06-07",
+          "Company": "AO CAFE",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        },
+        {
+          "TotalOrders": 0,
+          "Date": "05-04-2020",
+          "Company": "Firehouse Subs",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        },
+        {
+          "TotalOrders": 0,
+          "Date": "05-05-2020",
+          "Company": "Firehouse Subs",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        },
+        {
+          "TotalOrders": 55157,
+          "Date": "2021-06-07",
+          "Company": "Firehouse Subs",
+          "CompletedOrders": 39514,
+          "AttemptedOrders": 15643
+        },
+        {
+          "TotalOrders": 8,
+          "Date": "05-04-2020",
+          "Company": "The Spot",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 8
+        },
+        {
+          "TotalOrders": 40,
+          "Date": "05-05-2020",
+          "Company": "The Spot",
+          "CompletedOrders": 5,
+          "AttemptedOrders": 35
+        },
+        {
+          "TotalOrders": 0,
+          "Date": "2021-06-07",
+          "Company": "The Spot",
+          "CompletedOrders": 0,
+          "AttemptedOrders": 0
+        }];
+        resolve(dummy);
+  
+    })
 
     const fOutput: Promise<OrderData[]> = new Promise((resolve, reject) => {
         const dummy: OrderData[] =
@@ -64,7 +132,8 @@ describe('OrderTrendsController', () => {
 
     let mockservice = {
         NewUsersdata: jest.fn().mockReturnValue(finaloutput),
-        getLastXDays : jest.fn().mockReturnValue(fOutput)
+        getLastXDays : jest.fn().mockReturnValue(fOutput),
+        getSpecificCompanydata : jest.fn().mockReturnValue(expectedOut)
     }
 
 
@@ -91,4 +160,10 @@ describe('OrderTrendsController', () => {
         const mockDays = 200;
         expect(service.getLastXDays(mockDays)).toMatchObject(fOutput);
     })
+
+    it('should return data from Controller',async() => {
+      const companyString:string="AO CAFE,The Spot,Firehouse Subs";
+      const dateString :string ="05-05-2020,05-04-2020,2021-06-07";
+      expect(Controller.getSpecificCompanyData({companyString,dateString})).toMatchObject(expectedOut);
+  })
 })
