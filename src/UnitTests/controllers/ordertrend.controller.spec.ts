@@ -3,7 +3,7 @@ import { OrderTrendController } from '../../controllers/ordertrend.controller'
 import { DashboardRepo } from "../../repositories/dashboard.repo";
 import { OrderTrendService } from "../../services/ordertrend.service";
 import { PrismaService } from "../../services/prisma.service";
-import { companyLevel, NewUser, OrderData } from "../../dtos/orderTrendDto";
+import { companyLevel, getInactiveUsersData, NewUser, OrderData } from "../../dtos/orderTrendDto";
 
 describe('OrderTrendsController', () => {
     let Controller: OrderTrendController;
@@ -18,6 +18,52 @@ describe('OrderTrendsController', () => {
         },];
         resolve(kfinal)
     })
+
+    const finalo: Promise<getInactiveUsersData[]> = new Promise((resolve, reject) => {
+      const finali: getInactiveUsersData[] = [
+        {
+          "CompanyName": "Jimmy Changas",
+          "LatestOrderDate": new Date("2021-07-23T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "Zlantest2",
+          "LatestOrderDate": new Date("2021-04-08T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "RC Test Company",
+          "LatestOrderDate": new Date("2021-06-25T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "Balboa Cafe",
+          "LatestOrderDate": new Date("2021-08-06T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "radianttest",
+          "LatestOrderDate": new Date("2021-04-08T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "AO CAFE",
+          "LatestOrderDate": new Date("2021-09-17T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "Jun",
+          "LatestOrderDate": new Date("2021-08-25T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "jun",
+          "LatestOrderDate": new Date("2021-08-25T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "migtest",
+          "LatestOrderDate": new Date("2021-08-06T00:00:00.000Z")
+        },
+        {
+          "CompanyName": "Gold Standard Import Test Company",
+          "LatestOrderDate": new Date("2021-07-16T00:00:00.000Z")
+        }
+      ];
+      resolve(finali)
+  })
     
     const expectedOut : Promise<companyLevel[]> = new Promise((resolve,reject)=>{
 
