@@ -13,7 +13,8 @@ export class OrderTrendService {
   constructor(private readonly dashboardRepo: DashboardRepo) {}
 
   async getLastXDays(days: number): Promise<OrderData[]> {
-    return this.dashboardRepo.GetLastDays(days);
+    const data = await this.dashboardRepo.GetLastDays(days);
+    return data;
   }
 
   async getSpecificCompanydata(
@@ -54,7 +55,7 @@ export class OrderTrendService {
 
     return newUserdata;
   }
-  async InactiveCompanies(date: Date): Promise<getInactiveUsersData[]> {
-    return this.dashboardRepo.InactiveCompanies(date);
+  async InactiveUsers(date: Date): Promise<getInactiveUsersData[]> {
+    return this.dashboardRepo.GetInactiveUsers(date);
   }
 }

@@ -24,7 +24,7 @@ type Query {
   NewUsersData(from: DateTime!, to: DateTime!): [NewUser!]!
   companyLists: [companiesList!]!
   getSpecificCompanyData(cdates: String!, cname: String!): [companyLevel!]!
-  inactiveusers(date: DateTime!): [getInactiveUsersData!]!
+  inactiveusers(days: DateTime!): [getInactiveUsersData!]!
   ordertrend(days: Int!): [OrderData!]!
 }
 
@@ -33,7 +33,9 @@ type companiesList {
 }
 
 type companyLevel {
+  AttemptedOrders: Float!
   Company: String!
+  CompletedOrders: Float!
   Date: String!
   TotalOrders: Float!
 }
