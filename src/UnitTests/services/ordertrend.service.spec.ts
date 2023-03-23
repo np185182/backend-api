@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DashboardRepo } from '../../repositories/dashboard.repo';
 import { OrderTrendService } from '../../services/ordertrend.service';
 import { PrismaService } from '../../services/prisma.service';
-import { NewUser, NewUserfromdb, OrderData } from 'src/dtos/orderTrendDto';
+import { getInactiveUsersData, NewUser, NewUserfromdb, OrderData } from 'src/dtos/orderTrendDto';
 import { OrderTrendController } from 'src/controllers/ordertrend.controller';
 
 describe('OrdertrendService', () => {
@@ -22,6 +22,48 @@ describe('OrdertrendService', () => {
     ],
     frequency: 1
   }];
+  const ina : getInactiveUsersData[] = [
+    {
+      "CompanyName": "Jimmy Changas",
+      "LatestOrderDate": new Date("2021-07-23T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "Zlantest2",
+      "LatestOrderDate": new Date("2021-04-08T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "RC Test Company",
+      "LatestOrderDate": new Date("2021-06-25T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "Balboa Cafe",
+      "LatestOrderDate": new Date("2021-08-06T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "radianttest",
+      "LatestOrderDate": new Date("2021-04-08T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "AO CAFE",
+      "LatestOrderDate": new Date("2021-09-17T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "Jun",
+      "LatestOrderDate": new Date("2021-08-25T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "jun",
+      "LatestOrderDate": new Date("2021-08-25T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "migtest",
+      "LatestOrderDate": new Date("2021-08-06T00:00:00.000Z")
+    },
+    {
+      "CompanyName": "Gold Standard Import Test Company",
+      "LatestOrderDate": new Date("2021-07-16T00:00:00.000Z")
+    }
+  ];
   const x : OrderData[] = [
     {
       OrderDate : new Date("2022-09-02T00:00:00.000Z"),
@@ -62,7 +104,8 @@ describe('OrdertrendService', () => {
   ];
   let mockrepo = {
     GetLastDays : jest.fn().mockReturnValue(x),
-    newuserdatafromdb: jest.fn().mockReturnValue(outputfromdb)
+    newuserdatafromdb: jest.fn().mockReturnValue(outputfromdb),
+    GetInactiveUsers : jest.fn().mockReturnValue(ina)
   }
 
 
@@ -91,5 +134,9 @@ describe('OrdertrendService', () => {
       const mockOutput = await service.getLastXDays(inputDays);
       expect(mockOutput).toBe(x);
     })
+  })
+  it("check for InactiveUsers service method", async () => {
+    const mockoutput = await service.InactiveUsers(new Date('2021-12-01'))
+    expect(mockoutput).toMatchObject(ina);
   })
 });
