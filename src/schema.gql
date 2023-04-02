@@ -7,6 +7,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type InactiveMonths {
+  CompanyName: String
+  LastOrderDate: DateTime
+  Months: String
+}
+
 type NewUser {
   companyCreatedTimeStamp: String!
   frequency: Float!
@@ -24,6 +30,7 @@ type Query {
   NewUsersData(from: DateTime!, to: DateTime!): [NewUser!]!
   companyLists: [companiesList!]!
   getSpecificCompanyData(cdates: String!, cname: String!): [companyLevel!]!
+  inactivemonths(days: Int!): [InactiveMonths!]!
   inactiveusers(date: DateTime!): [getInactiveUsersData!]!
   ordertrend(days: Int!): [OrderData!]!
 }

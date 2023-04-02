@@ -34,5 +34,9 @@ export class OrderTrendController {
   async getAllCompanies(){
     return this.orderTrendService.getCompaniesList();
   } 
+  @Get('/InactiveMonths/')
+  async GetInactiveMonths(@Param() params){
+    return this.orderTrendService.GetInactiveMonths(params.days);
+}
 
 }

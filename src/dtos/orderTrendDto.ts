@@ -54,6 +54,17 @@ export class getInactiveUsersData {
 }
 
 @ObjectType()
+export class InactiveMonths {
+    @Field(type=>String,{nullable:true})
+    CompanyName : String;
+
+    @Field({nullable:true})
+    LastOrderDate : Date;
+
+    @Field({nullable:true})
+    Months : String;
+}
+@ObjectType()
 export class companyLevel {
   @Field()
   Company: string;

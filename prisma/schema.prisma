@@ -74,7 +74,7 @@ model sysdiagrams {
 model companytable1 {
   CompanyCode             String? @db.VarChar(50)
   CompanyName             String? @db.VarChar(50)
-  CompanyCreatedTimestamp String? @db.VarChar(50)
-
+  CompanyCreatedTimestamp String? @db.VarChar(50) 
+  
   @@ignore
 }

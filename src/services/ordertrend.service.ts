@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {
   companyLevel,
   getInactiveUsersData,
+  InactiveMonths,
   OrderData,
 } from '../dtos/orderTrendDto';
 import { DashboardRepo } from '../repositories/dashboard.repo';
@@ -58,4 +59,7 @@ export class OrderTrendService {
   async InactiveUsers(date: Date): Promise<getInactiveUsersData[]> {
     return this.dashboardRepo.GetInactiveUsers(date);
   }
+  async GetInactiveMonths(days: number) : Promise<InactiveMonths[]>{
+    return this.dashboardRepo.GetInactiveMonths(days);
+}
 }

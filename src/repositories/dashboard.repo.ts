@@ -1,5 +1,5 @@
 import { Injectable} from '@nestjs/common';
-import { companyLevel, getInactiveUsersData, OrderData } from 'src/dtos/orderTrendDto';
+import { companyLevel, getInactiveUsersData, InactiveMonths, OrderData } from 'src/dtos/orderTrendDto';
 import { PrismaService } from '../services/prisma.service';
 import { NewUserfromdb } from 'src/dtos/orderTrendDto';
 
@@ -18,6 +18,9 @@ export class DashboardRepo {
     }
     async GetInactiveUsers(date : Date) : Promise<getInactiveUsersData[]>{
         return this.prismaService.$queryRaw `exec InactiveCompanies  ${date}`;
+    }
+    async GetInactiveMonths(days : number) : Promise<InactiveMonths[]>{
+        return this.prismaService.$queryRaw `exec Inactivegraph ${days}`;
     }
     async getCompaniesList(){
         return this.prismaService.$queryRaw<string[]>`exec companies`;
