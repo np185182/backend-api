@@ -3,7 +3,9 @@ import { OrderTrendController } from '../../controllers/ordertrend.controller'
 import { DashboardRepo } from "../../repositories/dashboard.repo";
 import { OrderTrendService } from "../../services/ordertrend.service";
 import { PrismaService } from "../../services/prisma.service";
-import { getInactiveUsersData, NewUserfromdb, OrderData } from "../../dtos/orderTrendDto";
+import { companyLevel, getInactiveUsersData, NewUserfromdb, OrderData } from "../../dtos/orderTrendDto";
+import { resolve } from "path";
+import { rejects } from "assert";
 
 describe('OrderTrendsController', () => {
 
@@ -105,6 +107,78 @@ describe('OrderTrendsController', () => {
       }];
     resolve(dummy);
   })
+
+
+  const expectedOut : Promise<companyLevel[]> = new Promise((resolve,reject)=>{
+
+    const dummy : companyLevel[]=[
+      {
+        "TotalOrders": 0,
+        "Date": "05-04-2020",
+        "Company": "AO CAFE",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      },
+      {
+        "TotalOrders": 0,
+        "Date": "05-05-2020",
+        "Company": "AO CAFE",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      },
+      {
+        "TotalOrders": 0,
+        "Date": "2021-06-07",
+        "Company": "AO CAFE",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      },
+      {
+        "TotalOrders": 0,
+        "Date": "05-04-2020",
+        "Company": "Firehouse Subs",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      },
+      {
+        "TotalOrders": 0,
+        "Date": "05-05-2020",
+        "Company": "Firehouse Subs",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      },
+      {
+        "TotalOrders": 55157,
+        "Date": "2021-06-07",
+        "Company": "Firehouse Subs",
+        "CompletedOrders": 39514,
+        "AttemptedOrders": 15643
+      },
+      {
+        "TotalOrders": 8,
+        "Date": "05-04-2020",
+        "Company": "The Spot",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 8
+      },
+      {
+        "TotalOrders": 40,
+        "Date": "05-05-2020",
+        "Company": "The Spot",
+        "CompletedOrders": 5,
+        "AttemptedOrders": 35
+      },
+      {
+        "TotalOrders": 0,
+        "Date": "2021-06-07",
+        "Company": "The Spot",
+        "CompletedOrders": 0,
+        "AttemptedOrders": 0
+      }];
+      resolve(dummy);
+
+  })
+
   const Mockprismaservice = {
 
   }
@@ -116,9 +190,8 @@ describe('OrderTrendsController', () => {
       controllers: [OrderTrendController],
       providers: [OrderTrendService, DashboardRepo, PrismaService],
     }).overrideProvider(PrismaService).useValue(Mockprismaservice).compile();
-
-
     repo = app.get<DashboardRepo>(DashboardRepo);
+
   });
   it("DashboardRepository should be defined", () => {
     expect(repo).toBeDefined();
@@ -136,11 +209,11 @@ describe('OrderTrendsController', () => {
     const repooutput = repo.GetLastDays(mockDays);
     expect(repooutput).toMatchObject(fOutput);
   })
-  it("GetInactiveUsers checking from repository", () => {
-    const mockdate = new Date("2022-01-01");
-    repo.GetInactiveUsers = jest.fn().mockReturnValue(FinalOut)
-    const repooutput = repo.GetInactiveUsers(mockdate)
-    expect(repooutput).toMatchObject(FinalOut)
+  it("Get Specific Company Data checking from repository", () => {
+       const companyString:string="AO CAFE,The Spot,Firehouse Subs";
+       const dateString :string ="05-05-2020,05-04-2020,2021-06-07";
+       repo.getSpecificCompanyData= jest.fn().mockReturnValue(expectedOut)
+       const repoOutput = repo.getSpecificCompanyData(companyString,dateString);
+       expect(repoOutput).toMatchObject(expectedOut);
   })
-  
 })
