@@ -26,7 +26,7 @@ export class DashboardRepo {
         return this.prismaService.$queryRaw<string[]>`exec companies`;
     }
     async getSpecificCompanyData(companyString : String,dateString:String):Promise<companyLevel[]>{
-        return this.prismaService.$queryRaw<companyLevel[]>`execute demo ${companyString},${dateString}`;
+        return this.prismaService.$queryRaw<companyLevel[]>`execute CompaniesSpecificData  ${companyString},${dateString}`;
     }
 
 }
