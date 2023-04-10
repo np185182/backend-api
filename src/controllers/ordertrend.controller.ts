@@ -33,6 +33,5 @@ export class OrderTrendController {
   @Get('/companies/')
   async getAllCompanies(){
     return this.orderTrendService.getCompaniesList();
-  } 
-
+  }
 }

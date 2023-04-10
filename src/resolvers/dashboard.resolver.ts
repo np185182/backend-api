@@ -11,10 +11,9 @@ export class OrdertrendResolver {
   getLastData(@Args('days', { type: () => Int }) days: number){
     return this.ordertrendService.getLastXDays(days);
   }
+  
   @Query(()=>[NewUser],{name:"NewUsersData"})
   getUsersData(@Args('from',{type:()=>Date})from:Date,@Args('to',{type:()=>Date})to:Date){
-   
-
     return this.ordertrendService.NewUsersdata(from,to);
   }
 
