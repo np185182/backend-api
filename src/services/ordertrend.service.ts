@@ -24,6 +24,7 @@ export class OrderTrendService {
   ): Promise<companyLevel[]> {
     return this.dashboardRepo.getSpecificCompanyData(CompanyString, dateString);
   }
+
   async getCompaniesList(): Promise<string[]> {
     return this.dashboardRepo.getCompaniesList();
   }
@@ -31,9 +32,7 @@ export class OrderTrendService {
   async NewUsersdata(fromdate: Date, todate: Date): Promise<NewUser[]> {
     const datafromDb: NewUserfromdb[] =
       await this.dashboardRepo.newuserdatafromdb(fromdate, todate);
-
     const map = new Map<string, string[]>();
-
     datafromDb.forEach((obj) => {
       if (map.has(obj.CompanyCreatedTimeStamp)) {
         const temp = map.get(obj.CompanyCreatedTimeStamp);
@@ -43,9 +42,7 @@ export class OrderTrendService {
         map.set(obj.CompanyCreatedTimeStamp, [obj.CompanyName]);
       }
     });
-
     const newUserdata: NewUser[] = [];
-
     map.forEach((val, key) => {
       newUserdata.push({
         companyCreatedTimeStamp: key,
@@ -53,13 +50,14 @@ export class OrderTrendService {
         frequency: val.length,
       });
     });
-
     return newUserdata;
   }
+
   async InactiveUsers(date: Date): Promise<getInactiveUsersData[]> {
     return this.dashboardRepo.GetInactiveUsers(date);
   }
-  async GetInactiveMonths(days: number) : Promise<InactiveMonths[]>{
+
+  async GetInactiveMonths(days: number): Promise<InactiveMonths[]> {
     return this.dashboardRepo.GetInactiveMonths(days);
-}
+  }
 }

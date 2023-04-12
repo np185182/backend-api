@@ -6,7 +6,12 @@ import { DashboardRepo } from 'src/repositories/dashboard.repo';
 import { OrderTrendController } from 'src/controllers/ordertrend.controller';
 
 @Module({
-  controllers:[OrderTrendController],
-  providers: [OrdertrendResolver, OrderTrendService,PrismaService,DashboardRepo]
+  controllers: [OrderTrendController],
+  providers: [
+    OrdertrendResolver,
+    OrderTrendService,
+    PrismaService,
+    DashboardRepo,
+  ],
 })
 export class OrdertrendModule {}
