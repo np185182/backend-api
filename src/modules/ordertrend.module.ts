@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { OrderTrendService } from '../services/ordertrend.service';
-import { OrdertrendResolver } from '../resolvers/dashboard.resolver';
+import { OrderTrendResolver } from '../resolvers/ordertrend.resolver';
 import { PrismaService } from 'src/services/prisma.service';
-import { DashboardRepo } from 'src/repositories/dashboard.repo';
+import { OrderTrendRepository } from 'src/repositories/ordertrend.repo';
 import { OrderTrendController } from 'src/controllers/ordertrend.controller';
 
 @Module({
   controllers: [OrderTrendController],
   providers: [
-    OrdertrendResolver,
+    OrderTrendResolver,
     OrderTrendService,
     PrismaService,
-    DashboardRepo,
+    OrderTrendRepository,
   ],
 })
 export class OrdertrendModule {}

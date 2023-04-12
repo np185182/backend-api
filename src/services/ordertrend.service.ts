@@ -1,37 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import {
-  companyLevel,
-  getInactiveUsersData,
+  CompanyOrders,
+  InactiveCompanies,
   InactiveMonths,
+  NewUser,
+  NewUserList,
   OrderData,
 } from '../dtos/orderTrendDto';
-import { DashboardRepo } from '../repositories/dashboard.repo';
-import { NewUserfromdb } from '../dtos/orderTrendDto';
-import { NewUser } from '../dtos/orderTrendDto';
+import { OrderTrendRepository } from '../repositories/ordertrend.repo';
 
 @Injectable()
 export class OrderTrendService {
-  constructor(private readonly dashboardRepo: DashboardRepo) {}
+  constructor(private readonly repository: OrderTrendRepository) {}
 
-  async getLastXDays(days: number): Promise<OrderData[]> {
-    const data = await this.dashboardRepo.GetLastDays(days);
+  async getLastDays(days: number): Promise<OrderData[]> {
+    const data = await this.repository.getLastDays(days);
     return data;
   }
 
   async getSpecificCompanydata(
     CompanyString: String,
     dateString: String,
-  ): Promise<companyLevel[]> {
-    return this.dashboardRepo.getSpecificCompanyData(CompanyString, dateString);
+  ): Promise<CompanyOrders[]> {
+    return this.repository.getSpecificCompanydata(CompanyString, dateString);
   }
 
   async getCompaniesList(): Promise<string[]> {
-    return this.dashboardRepo.getCompaniesList();
+    return this.repository.getCompaniesList();
   }
 
-  async NewUsersdata(fromdate: Date, todate: Date): Promise<NewUser[]> {
-    const datafromDb: NewUserfromdb[] =
-      await this.dashboardRepo.newuserdatafromdb(fromdate, todate);
+  async getCompaniesEnrolled(fromdate: Date, todate: Date): Promise<NewUserList[]> {
+    const datafromDb: NewUser[] =
+      await this.repository.getCompaniesEnrolled(fromdate, todate);
     const map = new Map<string, string[]>();
     datafromDb.forEach((obj) => {
       if (map.has(obj.CompanyCreatedTimeStamp)) {
@@ -42,7 +42,7 @@ export class OrderTrendService {
         map.set(obj.CompanyCreatedTimeStamp, [obj.CompanyName]);
       }
     });
-    const newUserdata: NewUser[] = [];
+    const newUserdata: NewUserList[] = [];
     map.forEach((val, key) => {
       newUserdata.push({
         companyCreatedTimeStamp: key,
@@ -53,11 +53,11 @@ export class OrderTrendService {
     return newUserdata;
   }
 
-  async InactiveUsers(date: Date): Promise<getInactiveUsersData[]> {
-    return this.dashboardRepo.GetInactiveUsers(date);
+  async getInactiveCompanies(date: Date): Promise<InactiveCompanies[]> {
+    return this.repository.getInactiveCompanies(date);
   }
 
-  async GetInactiveMonths(days: number): Promise<InactiveMonths[]> {
-    return this.dashboardRepo.GetInactiveMonths(days);
+  async getInactiveMonths(days: number): Promise<InactiveMonths[]> {
+    return this.repository.getInactiveMonths(days);
   }
 }

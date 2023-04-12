@@ -1,37 +1,24 @@
 import { Body, Controller, Get, Param, Query } from '@nestjs/common';
-import { NewUser, OrderData, reqbody } from '../dtos/orderTrendDto';
+import { CompanyReqBody, NewUserList, OrderData} from '../dtos/orderTrendDto';
 import { OrderTrendService } from '../services/ordertrend.service';
 
 @Controller('OrderTrends')
 export class OrderTrendController {
-  constructor(private readonly orderTrendService: OrderTrendService) {}
+  constructor(private readonly service: OrderTrendService) {}
   /**
    * Fetches OrderData from Database upto given number of days
    * @param params params consists days which is an numberic type
    * @returns Json Array of OrderData DTO
    */
   @Get('/days/:days')
-  async getSpecificDaysOrdersData(@Param() params): Promise<OrderData[]> {
-    const data = await this.orderTrendService.getLastXDays(params.days);
+  async getLastDays(@Param() params): Promise<OrderData[]> {
+    const data = await this.service.getLastDays(params.days);
     return data;
   }
 
-  @Get()
-  async GetNewUsers(
-    @Query('from') from: Date,
-    @Query('to') to: Date,
-  ): Promise<NewUser[]> {
-    return this.orderTrendService.NewUsersdata(from, to);
-  }
-
-  @Get('/InactiveUsers/:date')
-  async getInactiveUsersData(@Param() params) {
-    return this.orderTrendService.InactiveUsers(params.date);
-  }
-
   @Get('/CompanyData/')
-  async getSpecificCompanyData(@Body() body: reqbody) {
-    return this.orderTrendService.getSpecificCompanydata(
+  async getSpecificCompanyData(@Body() body: CompanyReqBody) {
+    return this.service.getSpecificCompanydata(
       body.companyString,
       body.dateString,
     );
@@ -39,11 +26,24 @@ export class OrderTrendController {
 
   @Get('/companies/')
   async getAllCompanies() {
-    return this.orderTrendService.getCompaniesList();
+    return this.service.getCompaniesList();
+  }
+
+  @Get()
+  async getCompaniesEnrolled(
+    @Query('from') from: Date,
+    @Query('to') to: Date,
+  ): Promise<NewUserList[]> {
+    return this.service.getCompaniesEnrolled(from, to);
+  }
+
+  @Get('/InactiveUsers/:date')
+  async getInactiveCompanies(@Param() params) {
+    return this.service.getInactiveCompanies(params.date);
   }
   
   @Get('/InactiveMonths/')
-  async GetInactiveMonths(@Param() params) {
-    return this.orderTrendService.GetInactiveMonths(params.days);
+  async getInactiveMonths(@Param() params) {
+    return this.service.getInactiveMonths(params.days);
   }
 }

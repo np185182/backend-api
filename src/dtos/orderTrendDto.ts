@@ -16,7 +16,7 @@ export class OrderData {
 }
 
 @ObjectType()
-export class NewUser {
+export class NewUserList {
   @Field()
   companyCreatedTimeStamp: string;
   @Field((type) => [String])
@@ -26,7 +26,7 @@ export class NewUser {
 }
 
 @ObjectType()
-export class NewUserfromdb {
+export class NewUser {
   @Field()
   frequency: number;
   @Field()
@@ -46,7 +46,7 @@ export class CompanyData {
 }
 
 @ObjectType()
-export class getInactiveUsersData {
+export class InactiveCompanies {
   @Field((type) => String, { nullable: true })
   CompanyName: String;
 
@@ -67,7 +67,7 @@ export class InactiveMonths {
 }
 
 @ObjectType()
-export class companyLevel {
+export class CompanyOrders{
   @Field()
   Company: string;
   @Field()
@@ -80,13 +80,13 @@ export class companyLevel {
   CompletedOrders: number;
 }
 
-export type reqbody = {
+export type CompanyReqBody = {
   companyString: String;
   dateString: String;
 };
 
 @ObjectType()
-export class companiesList {
+export class Companies {
   @Field({ nullable: true })
   CompanyName: String;
 }

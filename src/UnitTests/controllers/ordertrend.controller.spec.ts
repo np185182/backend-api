@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { OrderTrendController } from '../../controllers/ordertrend.controller'
-import { DashboardRepo } from "../../repositories/dashboard.repo";
+import { DashboardRepo } from "../../repositories/ordertrend.repo";
 import { OrderTrendService } from "../../services/ordertrend.service";
 import { PrismaService } from "../../services/prisma.service";
 import { companyLevel, getInactiveUsersData, NewUser, OrderData } from "../../dtos/orderTrendDto";

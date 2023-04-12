@@ -2,10 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Companies {
+  CompanyName: String
+}
+
+type CompanyOrders {
+  AttemptedOrders: Float!
+  Company: String!
+  CompletedOrders: Float!
+  Date: String!
+  TotalOrders: Float!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type InactiveCompanies {
+  CompanyName: String
+  LatestOrderDate: DateTime
+}
 
 type InactiveMonths {
   CompanyName: String
@@ -13,7 +30,7 @@ type InactiveMonths {
   Months: String
 }
 
-type NewUser {
+type NewUserList {
   companyCreatedTimeStamp: String!
   frequency: Float!
   namesOfCompanies: [String!]!
@@ -27,27 +44,10 @@ type OrderData {
 }
 
 type Query {
-  NewUsersData(from: DateTime!, to: DateTime!): [NewUser!]!
-  companyLists: [companiesList!]!
-  getSpecificCompanyData(cdates: String!, cname: String!): [companyLevel!]!
-  inactivemonths(days: Int!): [InactiveMonths!]!
-  inactiveusers(date: DateTime!): [getInactiveUsersData!]!
-  ordertrend(days: Int!): [OrderData!]!
-}
-
-type companiesList {
-  CompanyName: String
-}
-
-type companyLevel {
-  AttemptedOrders: Float!
-  Company: String!
-  CompletedOrders: Float!
-  Date: String!
-  TotalOrders: Float!
-}
-
-type getInactiveUsersData {
-  CompanyName: String
-  LatestOrderDate: DateTime
+  getCompaniesEnrolled(from: DateTime!, to: DateTime!): [NewUserList!]!
+  getCompanyList: [Companies!]!
+  getInactiveCompanies(date: DateTime!): [InactiveCompanies!]!
+  getInactiveMonths(days: Int!): [InactiveMonths!]!
+  getLastDays(days: Int!): [OrderData!]!
+  getSpecificCompanyData(cdates: String!, cname: String!): [CompanyOrders!]!
 }

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DashboardRepo } from '../../repositories/dashboard.repo';
+import { DashboardRepo } from '../../repositories/ordertrend.repo';
 import { OrderTrendService } from '../../services/ordertrend.service';
 import { PrismaService } from '../../services/prisma.service';
 import { getInactiveUsersData, companyLevel, NewUser, NewUserfromdb, OrderData } from 'src/dtos/orderTrendDto';
