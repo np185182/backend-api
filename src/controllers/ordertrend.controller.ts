@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Query } from '@nestjs/common';
-import { CompanyReqBody, NewUserList, OrderData} from '../dtos/orderTrendDto';
+import { CompanyReqBody,EnrolledCompanyList, OrderData} from '../dtos/orderTrendDto';
 import { OrderTrendService } from '../services/ordertrend.service';
 
 @Controller('OrderTrends')
@@ -33,7 +33,7 @@ export class OrderTrendController {
   async getCompaniesEnrolled(
     @Query('from') from: Date,
     @Query('to') to: Date,
-  ): Promise<NewUserList[]> {
+  ): Promise<EnrolledCompanyList[]> {
     return this.service.getCompaniesEnrolled(from, to);
   }
 

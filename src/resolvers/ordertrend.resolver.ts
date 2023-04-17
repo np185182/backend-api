@@ -5,7 +5,7 @@ import {
   CompanyOrders,
   InactiveCompanies,
   InactiveMonths,
-  NewUserList,
+  EnrolledCompanyList,
   OrderData,
 } from '../dtos/orderTrendDto';
 
@@ -29,7 +29,7 @@ export class OrderTrendResolver {
     return this.service.getCompaniesList();
   }
 
-  @Query(() => [NewUserList], { name: 'getCompaniesEnrolled' })
+  @Query(() => [EnrolledCompanyList], { name: 'getCompaniesEnrolled' })
   getCompaniesEnrolled(
     @Args('from', { type: () => Date }) from: Date,
     @Args('to', { type: () => Date }) to: Date,

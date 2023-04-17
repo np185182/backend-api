@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import {
   CompanyOrders,
+  EnrolledCompany,
   InactiveCompanies,
   InactiveMonths,
-  NewUser,
   OrderData,
 } from 'src/dtos/orderTrendDto';
 import { PrismaService } from '../services/prisma.service';
 
 @Injectable()
-export class OrderTrendRepository{
+export class OrderTrendRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   async getLastDays(days: number): Promise<OrderData[]> {
@@ -29,9 +29,9 @@ export class OrderTrendRepository{
     >`execute CompaniesSpecificData  ${companyString},${dateString}`;
   }
 
-  async getCompaniesEnrolled(from: Date, to: Date): Promise<NewUser[]> {
+  async getCompaniesEnrolled(from: Date, to: Date): Promise<EnrolledCompany[]> {
     return this.prismaService.$queryRaw<
-    NewUser[]
+      EnrolledCompany[]
     >`exec GetCompaniesEnrolled ${from},${to}`;
   }
 

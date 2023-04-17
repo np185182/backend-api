@@ -3,8 +3,8 @@ import {
   CompanyOrders,
   InactiveCompanies,
   InactiveMonths,
-  NewUser,
-  NewUserList,
+  EnrolledCompany,
+  EnrolledCompanyList,
   OrderData,
 } from '../dtos/orderTrendDto';
 import { OrderTrendRepository } from '../repositories/ordertrend.repo';
@@ -29,8 +29,8 @@ export class OrderTrendService {
     return this.repository.getCompaniesList();
   }
 
-  async getCompaniesEnrolled(fromdate: Date, todate: Date): Promise<NewUserList[]> {
-    const datafromDb: NewUser[] =
+  async getCompaniesEnrolled(fromdate: Date, todate: Date): Promise<EnrolledCompanyList[]> {
+    const datafromDb: EnrolledCompany[] =
       await this.repository.getCompaniesEnrolled(fromdate, todate);
     const map = new Map<string, string[]>();
     datafromDb.forEach((obj) => {
@@ -42,7 +42,7 @@ export class OrderTrendService {
         map.set(obj.CompanyCreatedTimeStamp, [obj.CompanyName]);
       }
     });
-    const newUserdata: NewUserList[] = [];
+    const newUserdata: EnrolledCompanyList[] = [];
     map.forEach((val, key) => {
       newUserdata.push({
         companyCreatedTimeStamp: key,

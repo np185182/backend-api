@@ -19,6 +19,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type EnrolledCompanyList {
+  companyCreatedTimeStamp: String!
+  frequency: Float!
+  namesOfCompanies: [String!]!
+}
+
 type InactiveCompanies {
   CompanyName: String
   LatestOrderDate: DateTime
@@ -30,12 +36,6 @@ type InactiveMonths {
   Months: String
 }
 
-type NewUserList {
-  companyCreatedTimeStamp: String!
-  frequency: Float!
-  namesOfCompanies: [String!]!
-}
-
 type OrderData {
   AttemptedOrders: Float!
   CompletedOrders: Float!
@@ -44,7 +44,7 @@ type OrderData {
 }
 
 type Query {
-  getCompaniesEnrolled(from: DateTime!, to: DateTime!): [NewUserList!]!
+  getCompaniesEnrolled(from: DateTime!, to: DateTime!): [EnrolledCompanyList!]!
   getCompanyList: [Companies!]!
   getInactiveCompanies(date: DateTime!): [InactiveCompanies!]!
   getInactiveMonths(days: Int!): [InactiveMonths!]!

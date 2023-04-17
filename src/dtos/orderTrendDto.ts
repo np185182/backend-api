@@ -16,7 +16,7 @@ export class OrderData {
 }
 
 @ObjectType()
-export class NewUserList {
+export class EnrolledCompanyList {
   @Field()
   companyCreatedTimeStamp: string;
   @Field((type) => [String])
@@ -26,7 +26,7 @@ export class NewUserList {
 }
 
 @ObjectType()
-export class NewUser {
+export class EnrolledCompany {
   @Field()
   frequency: number;
   @Field()
